@@ -1,0 +1,57 @@
+import { Container, Divider } from '@mui/material'
+import {useDispatch, useSelector} from 'react-redux'
+
+import {AppStoreType} from './bll/store'
+import {Loader} from './Loader'
+import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
+import {loadingAC} from './bll/loadingReducer'
+import s2 from '../../s1-main/App.module.css'
+
+/*
+* 1 - в файле loadingReducer.ts дописать типы и логику
+* 2 - получить isLoading из редакса
+* 3 - дописать функцию setLoading
+* 4 - сделать стили в соответствии с дизайном
+* */
+
+const HW10 = () => {
+    const dispatch = useDispatch();
+    // useSelector, useDispatch // пишет студент
+    const isLoading = useSelector<AppStoreType>((state) => state.loading.isLoading);
+
+    const setLoading = () => { // пишет студент // показать крутилку на 1,5 секунд
+        // dispatch
+        dispatch(loadingAC(true))
+        // setTimeout
+        setTimeout( () => {
+            dispatch(loadingAC(false))
+        }, 1500)
+    }
+
+    return (
+        <div id={'hw10'}>
+            <Container maxWidth={'xl'}>
+                <div className={s2.hwTitle}>Homework #10</div>
+            </Container>
+            <Divider />           
+            <Container maxWidth={'xl'} sx={{mt: '1rem'}}>
+                <div className={s2.hw}>
+                    {isLoading ? (
+                        <div id={'hw10-loading'}>
+                            <Loader />
+                        </div>
+                    ) : (
+                        <SuperButton
+                            id={'hw10-button-start-loading'}
+                            onClick={setLoading}
+                        >
+                            Set loading...
+                        </SuperButton>
+                    )}
+                </div>
+            </Container>            
+        </div>
+    )
+}
+
+export default HW10

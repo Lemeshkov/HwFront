@@ -1,0 +1,17 @@
+.buttonsContainer {
+}
+
+.clock {
+}
+
+.watch {
+}
+
+.watch strong {
+}
+
+.more {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;    
+}
